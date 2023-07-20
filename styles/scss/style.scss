@@ -1,0 +1,269 @@
+@import 'variables';
+@import 'mixins';
+
+*{
+    @include overal;
+}
+
+body{
+    background-color: $bgColor;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 3rem;
+    background-color: $primaryColor;
+
+    h1{
+        @include textStyle(1.3rem,bold,$secondaryColor)
+    }
+
+   
+}
+
+.hambergur-menu{
+    display: none;
+    flex-direction: column;
+}
+
+span{
+    display: inline-block;
+    background-color: $secondaryColor;
+    width: 30px;
+    height: 3px;
+    border-radius: 5px;
+    margin: 2px;
+    
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+
+    img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+    }
+
+    nav{
+        margin-right: 40px;
+    }
+
+    ul{
+        display: flex;
+        list-style-type: none;
+    }
+
+    a{
+        padding: 8px;
+        text-decoration: none;
+        @include textStyle(1rem,bold,$secondaryColor);
+        transition: all .3s ease-in;
+
+        &:hover{
+            color: $textcolor;
+            
+        }
+    }
+}
+
+
+.main{
+    display: flex;
+    margin: 2rem 3rem;
+
+    aside{
+        flex-direction: column;
+        width: 25%;
+        margin-right: 2rem;
+        @include bodyStyle;
+        @include boxStyle;
+
+        div{
+            width: 100%;
+            text-align: center;
+            line-height: 110px;
+            height: 110px;
+            margin: 20px 10px;
+            background-color: $primaryColor;
+            @include boxStyle;
+            
+        }
+
+        p {
+            @include textStyle(1rem,bold,$secondaryColor);
+        }
+    }
+
+    main{
+        flex-direction: column;
+        width: 75%;
+        @include bodyStyle;
+        @include boxStyle;
+    }
+
+    img{
+        width: 350px;
+        height: 360px;
+    }
+
+    h2{
+        @include textStyle(3rem,bold,$primaryColor);
+        margin: 0 0 2rem;
+    }
+
+    p{
+        @include textStyle(2rem,bold,$textcolor)
+    }
+
+
+}
+
+.cards{
+    width: calc(100% - 6rem);
+    margin: 1rem 3rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 20px 0;
+
+    
+}
+
+.card{
+    @include boxStyle;
+
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .card-content{
+        line-height: 1.5rem;
+        background-color: $secondaryColor;
+        padding: 15px;
+        margin-top: -4px;
+
+        p{
+            margin: 10px 0;
+            @include textStyle(1.1rem,100,$textcolor)
+        }
+
+        span{
+            display: inline;
+            text-align: center;
+            margin: 10px 0;
+            @include textStyle(1rem,bold,$primaryColor)
+        }
+    }
+}
+
+footer{
+    display: flex;
+    background-color: $primaryColor;
+    padding: 2rem 3rem;
+
+    .summary{
+        width: 50%;
+        p{
+          text-align: justify;
+        @include textStyle(1.2rem,200,$secondaryColor); 
+        }
+      
+    }
+
+    .links{
+        padding: 0 5rem;
+
+        ul{
+            list-style-type: none;
+        }
+
+        a{
+            text-decoration: none;
+            @include textStyle(1rem,bold,$secondaryColor);
+            display: inline-block;
+            margin-bottom: 10px;
+            transition: all .3s ease-in;
+
+        &:hover{
+            color: $textcolor;
+            
+        }
+            
+        }
+    }
+}
+
+@include query(M){
+    .hambergur-menu{
+        display: flex;
+    }
+
+    header{
+        .navbar{
+        display: none;
+        }
+    } 
+
+    .main{
+        flex-direction: column-reverse;
+        margin: 1rem;
+
+        main{
+            width: calc(100% - 2rem);
+            height: 500px;
+            margin-bottom: 20px;
+
+            h2{
+                @include textStyle(2.6rem,bold,$primaryColor);
+                margin: 0 0 2rem;
+            }
+        
+            p{
+                @include textStyle(1.5rem,bold,$textcolor)
+            }
+
+
+            img{
+                width:240px;
+                height: 240px;
+            }
+        }
+
+        aside{
+            width: calc(100% - 2rem);
+            height: 600px;
+        }
+    }
+
+    .cards{
+        width: calc(100% - 2rem);
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+    }
+
+    
+    footer{
+        flex-direction: column;
+        .links{
+            width: 100%;
+            padding: 0;
+        }
+        .summary{
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    } 
+}
+
+@include query(L){
+    .cards{
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+}
